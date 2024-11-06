@@ -1,3 +1,5 @@
+// src/components/ContactCard.tsx
+
 'use client';
 
 import { Contact } from '@/lib/validationSchemas';
@@ -7,7 +9,7 @@ interface ContactCardProps {
   contact: Contact;
 }
 
-const ContactCardAdmin = ({ contact }: ContactCardProps) => (
+const ContactCard = ({ contact }: ContactCardProps) => (
   <Card className="h-100">
     <Card.Header className="d-flex align-items-center">
       <Image
@@ -29,9 +31,8 @@ const ContactCardAdmin = ({ contact }: ContactCardProps) => (
     </Card.Header>
     <Card.Body>
       <Card.Text>{contact.description}</Card.Text>
-      {/* Owner information removed as it does not exist on the Contact type */}
     </Card.Body>
   </Card>
 );
 
-export default ContactCardAdmin;
+export default ContactCard;

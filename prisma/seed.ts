@@ -7,13 +7,12 @@ const prisma = new PrismaClient();
 async function main() {
   console.log('Seeding the database');
   const password = await hash('changeme', 10);
-
   config.defaultAccounts.forEach(async (account) => {
     let role: Role = 'USER';
     if (account.role === 'ADMIN') {
       role = 'ADMIN';
     }
-    console.log(` Creating user: ${account.email} with role: ${role}`);
+    console.log(`  Creating user: ${account.email} with role: ${role}`);
     await prisma.user.upsert({
       where: { email: account.email },
       update: {},
@@ -23,8 +22,8 @@ async function main() {
         role,
       },
     });
+    // console.log(`  Created user: ${user.email} with role: ${user.role}`);
   });
-
   config.defaultData.forEach(async (data, index) => {
     let condition: Condition = 'good';
     if (data.condition === 'poor') {
@@ -34,7 +33,7 @@ async function main() {
     } else {
       condition = 'fair';
     }
-    console.log(` Adding stuff: ${data.name} (${data.owner})`);
+    console.log(`  Adding stuff: ${data.name} (${data.owner})`);
     await prisma.stuff.upsert({
       where: { id: index + 1 },
       update: {},
@@ -46,24 +45,7 @@ async function main() {
       },
     });
   });
-
-  config.defaultContacts.forEach(async (contact, index) => {
-    console.log(` Adding contact: ${contact.firstName} ${contact.lastName} (${contact.owner})`);
-    await prisma.contact.upsert({
-      where: { id: index + 1 },
-      update: {},
-      create: {
-        firstName: contact.firstName,
-        lastName: contact.lastName,
-        address: contact.address,
-        image: contact.image,
-        description: contact.description,
-        owner: contact.owner,
-      },
-    });
-  });
 }
-
 main()
   .then(() => prisma.$disconnect())
   .catch(async (e) => {
