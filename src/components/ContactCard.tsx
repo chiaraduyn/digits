@@ -1,9 +1,8 @@
-// src/components/ContactCard.tsx
-
 'use client';
 
 import { Contact } from '@/lib/validationSchemas';
 import { Card, Image } from 'react-bootstrap';
+import Link from 'next/link';
 
 interface ContactCardProps {
   contact: Contact;
@@ -32,6 +31,9 @@ const ContactCard = ({ contact }: ContactCardProps) => (
     <Card.Body>
       <Card.Text>{contact.description}</Card.Text>
     </Card.Body>
+    <Card.Footer>
+      <Link href={`edit/${contact.id}`} className="text-decoration-none">Edit</Link>
+    </Card.Footer>
   </Card>
 );
 

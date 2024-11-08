@@ -15,10 +15,39 @@ export const EditStuffSchema = Yup.object({
   owner: Yup.string().required(),
 });
 
+export const AddContactSchema = Yup.object({
+  firstName: Yup.string().required('First name is required'),
+  lastName: Yup.string().required('Last name is required'),
+  address: Yup.string().required('Address is required'),
+  phone: Yup.string()
+    .matches(/^\+?[\d\s-]+$/, 'Invalid phone number format')
+    .required('Phone number is required'),
+  email: Yup.string()
+    .email('Invalid email format')
+    .required('Email is required'),
+  owner: Yup.string().required('Owner is required'),
+});
+
+export const EditContactSchema = Yup.object({
+  id: Yup.number().required('Contact ID is required'),
+  firstName: Yup.string().required('First name is required'),
+  lastName: Yup.string().required('Last name is required'),
+  address: Yup.string().required('Address is required'),
+  phone: Yup.string()
+    .matches(/^\+?[\d\s-]+$/, 'Invalid phone number format')
+    .required('Phone number is required'),
+  email: Yup.string()
+    .email('Invalid email format')
+    .required('Email is required'),
+  owner: Yup.string().required('Owner is required'),
+});
+
 export interface Contact {
+  id?: number;
   firstName: string;
   lastName: string;
   address: string;
-  image: string;
-  description: string;
+  phone: string;
+  email: string;
+  owner: string;
 }
