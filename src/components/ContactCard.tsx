@@ -1,40 +1,39 @@
-'use client';
-
-import { Contact } from '@/lib/validationSchemas';
-import { Card, Image, ListGroup } from 'react-bootstrap';
-import NoteItem from './NoteItem'; // Import NoteItem
-import { Note } from '@prisma/client';
+import { Card, ListGroup } from 'react-bootstrap';
+import NoteItem from '@/components/NoteItem';
+import AddNoteForm from '@/components/AddNoteForm';
+import { Note } from '@/lib/types';
 
 interface ContactCardProps {
-  contact: Contact;
+  contact: {
+    id: number;
+    firstName: string;
+    lastName: string;
+    address: string;
+    description: string;
+    image: string;
+  };
   notes: Note[];
 }
 
-const ContactCard = ({ contact, notes }: ContactCardProps) => (
-  <Card className="h-100">
-    <Card.Header className="d-flex align-items-center">
-      <Image
-        src={contact.image}
-        alt={`${contact.firstName} ${contact.lastName}`}
-        width={75}
-        height={75}
-        roundedCircle
-        className="me-3"
-      />
-      <div>
-        <Card.Title>
-          {contact.firstName} {contact.lastName}
-        </Card.Title>
-        <Card.Subtitle className="text-muted">{contact.address}</Card.Subtitle>
-      </div>
-    </Card.Header>
+const ContactCard: React.FC<ContactCardProps> = ({ contact, notes }) => (
+  <Card>
+    <Card.Img variant="top" src={contact.image} alt={`${contact.firstName} ${contact.lastName}`} />
     <Card.Body>
+      <Card.Title>{`${contact.firstName} ${contact.lastName}`}</Card.Title>
       <Card.Text>{contact.description}</Card.Text>
+      <Card.Text>
+        <strong>Address:</strong>
+        {' '}
+        {contact.address}
+      </Card.Text>
+
       <ListGroup variant="flush">
-        {notes.map((note) => (
+        {notes.map((note: Note) => (
           <NoteItem key={note.id} note={note} />
         ))}
       </ListGroup>
+
+      <AddNoteForm contactId={contact.id} />
     </Card.Body>
   </Card>
 );
