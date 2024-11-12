@@ -1,24 +1,18 @@
-![](https://github.com/ics-software-engineering/nextjs-application-template/raw/main/doc/landing-page.png)
+# My Next.js Application
 
-nextjs-application-template is a sample Next.js 14 application that illustrates:
+<img src="doc/landing.png">
 
-- A standard directory layout using 'src/' as recommended in the [Next.js Project Structure](https://nextjs.org/docs/getting-started/project-structure) guide.
-- [Bootstrap 5 React](https://react-bootstrap.github.io/) for user interface.
-- [React Hook Form](https://www.react-hook-form.com/) for form development.
-- Authorization, authentication, and registration using [NextAuth.js](https://next-auth.js.org/).
-- Initialization of users and data from a settings file.
-- Alerts regarding success or failure of DB updates using [Sweet Alert](https://sweetalert.js.org/).
-- Quality assurance using [ESLint](http://eslint.org) with packages to partially enforce the [Next.js ESLint rules](https://nextjs.org/docs/app/building-your-application/configuring/eslint) and the [AirBnB Javascript Style Guide](https://github.com/airbnb/javascript).
+This Next.js application demonstrates a well-organized project structure, user authentication, and CRUD operations using PostgreSQL. It includes essential tools like Bootstrap, React Hook Form, NextAuth.js for authentication, and SweetAlert for alerts.
 
-The goal of this template is to help you get quickly started doing Next.js development by providing a reasonable directory structure for development and deployment, a set of common extensions to the core framework, and boilerplate code to implement basic page display, navigation, forms, roles, and database manipulation.
-
-To keep this codebase simple and small, some important capabilities are intentionally excluded from this template:
-
-- Unit Testing
-- Security
-- Deployment
-
-Examples of the these capabilities will be provided elsewhere.
+## Table of Contents
+- [Installation](#installation)
+- [Application Walkthrough](#application-walkthrough)
+  - [Landing Page](#landing-page)
+  - [Sign In](#sign-in)
+  - [Add Stuff](#add-stuff)
+  - [Admin Features](#admin-features)
+- [Project Structure](#project-structure)
+- [Quality Assurance](#quality-assurance)
 
 ## Installation
 
